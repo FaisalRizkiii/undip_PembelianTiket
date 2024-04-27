@@ -1,3 +1,17 @@
+type Error = variant { NotFound : record { msg : text } };
+type Result = variant { Ok : Ticket; Err : Error };
+type Ticket = record {
+  id : nat64;
+  updated_at : opt nat64;
+  seat : text;
+  created_at : nat64;
+  event : text;
+  price : nat64;
+};
+type TicketPayload = record { seat : text; event : text; price : nat64 };
 service : {
-    "greet": (text) -> (text) query;
+  add_ticket : (TicketPayload) -> (opt Ticket);
+  delete_ticket : (nat64) -> (Result);
+  get_ticket : (nat64) -> (Result) query;
+  update_ticket : (nat64, TicketPayload) -> (Result);
 }
