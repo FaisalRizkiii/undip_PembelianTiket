@@ -1,5 +1,3 @@
-// pembelian tiket
-
 #[macro_use]
 extern crate serde;
 use candid::{Decode, Encode};
